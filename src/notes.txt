@@ -1,0 +1,24 @@
+
+//components
+//1. class components
+//2. function component
+
+// JSX > JS XML => new syntax looks like html, css / extended
+// class => reserved keyword of JS
+//{} => Template Syntax
+
+//custom component
+//1.First letter must be Capital
+//2.It should return JSX
+
+Hooks(function)
+----------------
+
+useState => destructure
+const [state, setState] = useState(initialValue)
+
+state of art of technology => top technology
+state of mind => current mind state
+
+state  => current scenario
+
