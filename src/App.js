@@ -1,119 +1,72 @@
-import logo from './logo.svg';
 import './App.css';
-import { useState } from "react"
+import { AddColor } from './AddColor';
+
+const INITIAL_PRODUCT_LIST = [
+  {
+    name: "Motivational Poster Frame",
+    poster: "https://m.media-amazon.com/images/I/71kb+LvPEsL._SX425_.jpg",
+    price: "874",
+    summary: "For Home & Office Decor: An Aesthetic Wall Decorations Paintings For Living Room, Bedroom, Kitchen, Office, Hotel, Restaurant, Dining Area, Kids Room, Bathroom, Bar, Gym, etc. A Great Gift For Art Lovers, Decorators, Interior Designers, Family, Friends And More",
+    rating: 8,
+  },
+  {
+    name: "Apple iPhone 15 Pro Max (256 GB)",
+    poster: "https://m.media-amazon.com/images/I/81Os1SDWpcL._AC_UY327_FMwebp_QL65_.jpg",
+    price: "1,56,990",
+    summary: "FORGED IN TITANIUM — iPhone 15 Pro Max has a strong and light aerospace-grade titanium design with a textured matte-glass back. It also features a Ceramic Shield front that’s tougher than any smartphone glass. And it’s splash, water, and dust resistant.",
+    rating: 9,
+  },
+  {
+    name: "Apple 2022 MacBook Pro Laptop with M2 chip",
+    poster: "https://m.media-amazon.com/images/I/71WtFY52CeL._SX679_.jpg",
+    price: "1,40,990",
+    summary: "SUPERCHARGED BY M2 – The 13-inch MacBook Pro laptop is a portable powerhouse. Get more done faster with a next-generation 8-core CPU, 10-core GPU and up to 24GB of unified memory.",
+    rating: 7,
+  }
+]
+
 
 function App() {
-  //JS starts
-  const name = "Praveen";
-  const name1 = "Ganesh";
-  const people = ["Praveen", "Ganesh", "Aravind", "Kaja"]//Array of strings
-  //                   0,      1,          2  
-
-  const userList = [
-    {
-      name: "Sathya",
-      pic: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    },
-    {
-      name: "Ganesh",
-      pic: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    },
-    {
-      name: "Kaja",
-      pic: "https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg",
-    }
-
-  ]
-
-  //JS ends
-  //JSX starts
+  const productList = INITIAL_PRODUCT_LIST
 
   return (
     <div className="App">
-      <Counter />
-      {/* {people.map((personName) => (
-        <Welcome nm={personName} />
-      ))} */}
-      {/* {userList.map((user) => (
-        <Profile name={user.name} pic={user.pic} />
-      ))} */}
+      <div className='product-list'>
+        {productList.map((product) => (
+          <Product product={product} />
+        ))}
+      </div>
 
 
-      {/* <Profile
-        name="Sathya"
-        pic="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      />
-
-      <Profile
-        name="Ganesh"
-        pic="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      /> */}
-
-      {/* <h1>Hello {name}</h1> */}
-
-
-      {/* <Welcome name="Praveen" age="20" />
-      <Welcome name="Ganesh" age="23" />
-      <Welcome name="Aravind" age="24" /> */}
-      {/* <Msg name="Praveen" age="20" /> */}
     </div>
   );
 }
 
 
-function Counter() {
-  // let like = 10;
-  const [like, setLike] = useState(0)
+function Product({ product }) {
 
-  console.log("Like", like)
+  // const product = {
+  //   name: "Motivational Poster Frame",
+  //   poster: "https://m.media-amazon.com/images/I/71kb+LvPEsL._SX425_.jpg",
+  //   price: 874,
+  //   summary: "For Home & Office Decor: An Aesthetic Wall Decorations Paintings For Living Room, Bedroom, Kitchen, Office, Hotel, Restaurant, Dining Area, Kids Room, Bathroom, Bar, Gym, etc. A Great Gift For Art Lovers, Decorators, Interior Designers, Family, Friends And More",
+  //   rating: 8,
+  // }
   return (
-    <div>
-      {/* onClick => camelCase */}
-      <button onClick={() => {
-        setLike(like + 1)
-        console.log(like)
-      }}>👍{like}</button>
-
+    <div className='product-container'>
+      <img className='product-poster' src={product.poster} />
+      <div className='product-spec'>
+        <h3 className='product-name'>{product.name}</h3>
+        <p className='product-rating'>⭐{product.rating}</p>
+      </div>
+      <p className='product-summary'>{product.summary}</p>
+      <div className='priceStyle'>
+        Price: <p className='product-price'>  ₹ {product.price}</p>
+        <button>Add to Cart</button>
+      </div>
     </div>
   )
 }
-
-
-
-//task
-//create profile component
-//display profile pic and name
-
-function Profile({ name, pic }) {
-  return (
-    <div>
-      <img style={{ width: "300px", height: "300px" }} src={pic} />
-      <h1>{name}</h1>
-    </div>
-  );
-}
-
-function Welcome(props) {
-  return (
-    <h1>
-      Hi {props.nm} {props.age}
-    </h1>
-  );
-}
-//props destruturing
-function Msg({ name, age }) {
-  return (
-    <h1>
-      Welcome {name} {age}
-    </h1>
-  );
-}
-
-
-
-
-
-
 
 
 export default App;

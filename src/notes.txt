@@ -1,3 +1,6 @@
+props => immutable => cannot modify
+state => mutable => can modify
+
 
 //components
 //1. class components
@@ -22,3 +25,61 @@ state of mind => current mind state
 
 state  => current scenario
 
+
+
+   {/* <h1>{name}</h1>
+      <Welcome nm={name} /> */}
+      {/* <Counter /> */}
+      {/* {people.map((personName) => (
+        <Welcome nm={personName} />
+      ))} */}
+      {/* {userList.map((user) => (
+        <Profile name={user.name} pic={user.pic} />
+      ))} */}
+
+
+      {/* <Profile
+        name="Sathya"
+        pic="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+      />
+
+      <Profile
+        name="Ganesh"
+        pic="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+      /> */}
+
+      {/* <h1>Hello {name}</h1> */}
+
+
+      {/* <Welcome name="Praveen" age="20" />
+      <Welcome name="Ganesh" age="23" />
+      <Welcome name="Aravind" age="24" /> */}
+      {/* <Msg name="Praveen" age="20" /> */}
+
+      
+
+
+       //JS starts
+  const name = "Praveen";
+  const name1 = "Ganesh";
+  const people = ["Praveen", "Ganesh", "Aravind", "Kaja"]//Array of strings
+  //                   0,      1,          2  
+
+  const userList = [
+    {
+      name: "Sathya",
+      pic: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    },
+    {
+      name: "Ganesh",
+      pic: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
+    },
+    {
+      name: "Kaja",
+      pic: "https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg",
+    }
+
+  ]
+
+  //JS ends
+  //JSX starts
