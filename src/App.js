@@ -1,5 +1,6 @@
 import './App.css';
 import { AddColor } from './AddColor';
+import { useState } from 'react';
 
 const INITIAL_PRODUCT_LIST = [
   {
@@ -28,14 +29,22 @@ const INITIAL_PRODUCT_LIST = [
 
 function App() {
   const productList = INITIAL_PRODUCT_LIST
+  const [cart, setCart] = useState([])
+
+
+  const handleCart = (product) => {
+    setCart([...cart, product])
+  }
 
   return (
     <div className="App">
+      <button>Cart {cart.length}</button>
       <div className='product-list'>
         {productList.map((product) => (
-          <Product product={product} />
+          <Product product={product} onAddCart={handleCart} />
         ))}
       </div>
+      <Cart cartItem={cart} />
 
 
     </div>
@@ -43,7 +52,7 @@ function App() {
 }
 
 
-function Product({ product }) {
+function Product({ product, onAddCart }) {
 
   // const product = {
   //   name: "Motivational Poster Frame",
@@ -62,8 +71,19 @@ function Product({ product }) {
       <p className='product-summary'>{product.summary}</p>
       <div className='priceStyle'>
         Price: <p className='product-price'>  ₹ {product.price}</p>
-        <button>Add to Cart</button>
+        <button onClick={() => onAddCart(product)}>Add to Cart</button>
       </div>
+    </div>
+  )
+}
+
+
+function Cart({ cartItem }) {
+  return (
+    <div>
+      {cartItem.map((item) => (
+        <li>{item.name}</li>
+      ))}
     </div>
   )
 }
