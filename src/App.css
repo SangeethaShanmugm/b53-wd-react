@@ -40,3 +40,8 @@
   gap: 16px;
   flex-wrap: wrap;
 }
+
+.product-rating {
+  font-size: 20px;
+  font-weight: bold;
+}

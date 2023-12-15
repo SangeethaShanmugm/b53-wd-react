@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Counter() {
+export function Counter() {
   // let like = 10;
   const [like, setLike] = useState(0);
   const [dislike, setDislike] = useState(0);

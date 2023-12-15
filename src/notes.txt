@@ -83,3 +83,12 @@ state  => current scenario
 
   //JS ends
   //JSX starts
+
+  
+  
+  Usage of keys
+Conditional rendering
+
+Component life cycle
+Stateful and stateless components
+Lifecycle of Hook, useEffect
