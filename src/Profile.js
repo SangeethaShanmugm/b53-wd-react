@@ -1,4 +1,4 @@
-function Profile({ name, pic }) {
+export function Profile({ name, pic }) {
   return (
     <div>
       <img style={{ width: "300px", height: "300px" }} src={pic} />
