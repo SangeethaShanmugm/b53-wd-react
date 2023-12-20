@@ -26,7 +26,7 @@ export function Product({ product, id, onAddCart }) {
         <p style={styles} className='product-rating'>⭐{product.rating}</p>
       </div>
       <button onClick={() => setShow(!show)}>Toggle Description</button>
-      <button onClick={() => navigate("/products/" + id)}>Info</button>
+      <button onClick={() => navigate(`/products/${id}`)}>Info</button>
       {/* conditional Styling */}
       {/* <p style={summaryStyle} className='product-summary'>{product.summary}</p> */}
       {/* conditional rendering */}

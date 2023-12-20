@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, Link } from "react-router-dom"
+import { Routes, Route, Link, useNavigate } from "react-router-dom"
 import { AddColor } from './AddColor';
 import { ProductList } from './ProductList';
 import { Home } from './Home';
@@ -7,6 +7,14 @@ import { UserList } from './UserList';
 import { ProductDetails } from './ProductDetails';
 import { AddProduct } from './AddProduct';
 import { useState } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+
 export const INITIAL_PRODUCT_LIST = [
   {
     "name": "Motivational Poster Frame",
@@ -104,10 +112,37 @@ export const INITIAL_PRODUCT_LIST = [
 function App() {
   //lifting the state up => lifted from child comp
   const [productList, setProductList] = useState(INITIAL_PRODUCT_LIST)
+  const [mode, setMode] = useState("light")
+  //1. Creating   - createContext ✅
+  //2. Publisher  - provider - context.Provider ✅
+  //3. Subscriber - useContext  - useContext(context)
 
+
+  const theme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
+
+
+  const navigate = useNavigate()
   return (
-    <div className="App">
-      <nav>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div className="App">
+        <AppBar position="static" >
+          <Toolbar >
+            <Button color="inherit" onClick={() => navigate("/")}>Home</Button>
+            <Button color="inherit" onClick={() => navigate("/products")}>ProductList</Button>
+            <Button color="inherit" onClick={() => navigate("/products/add")}>AddProduct</Button>
+            <Button color="inherit" onClick={() => navigate("/color-game")}>AddColor</Button>
+            <Button color="inherit" onClick={() => navigate("/profile")}>UserList</Button>
+            <Button color="inherit" startIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+              onClick={() => setMode(mode === "light" ? "dark" : "light")}>
+              {mode === "light" ? "dark" : "light"} Mode</Button>
+          </Toolbar>
+        </AppBar>
+        {/* <nav>
         <ul>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/products">ProductList</Link></li>
@@ -117,19 +152,20 @@ function App() {
           <li><Link to="/color-game">AddColor</Link></li>
           <li><Link to="/profile">UserList</Link></li>
         </ul>
-      </nav>
+      </nav> */}
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductList productList={productList} />} />
-        <Route path="/products/:productid" element={<ProductDetails />} />
-        <Route path="/products/add" element={<AddProduct productList={productList} setProductList={setProductList} />} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<ProductList productList={productList} />} />
+          <Route path="/products/:productid" element={<ProductDetails productList={productList} />} />
+          <Route path="/products/add" element={<AddProduct productList={productList} setProductList={setProductList} />} />
 
 
-        <Route path="/color-game" element={<AddColor />} />
-        <Route path="/profile" element={<UserList />} />
-      </Routes>
-    </div>
+          <Route path="/color-game" element={<AddColor />} />
+          <Route path="/profile" element={<UserList />} />
+        </Routes>
+      </div>
+    </ThemeProvider>
   );
 }
 

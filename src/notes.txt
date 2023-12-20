@@ -92,3 +92,20 @@ Conditional rendering
 Component life cycle
 Stateful and stateless components
 Lifecycle of Hook, useEffect
+
+
+
+
+
+ProductList(data)  -> Product(data)  -> Counter(data) 
+                   -> Contact(data) 
+
+
+React flows in only one direction || Pass from Parent to Child ✅
+Child to Parent ❌
+unidirectional
+
+                      App 🏔️ ( productList, setproductList)
+
+
+       ProductList (🌊)            ProductDetails (🌊)            

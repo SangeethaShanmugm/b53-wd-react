@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
+
 export function AddProduct({ productList, setProductList }) {
 
   const [name, setName] = useState("")
@@ -11,32 +15,28 @@ export function AddProduct({ productList, setProductList }) {
   return (
     <div className="add-product-form">
 
-      <input type="text"
+      <TextField id="outlined-basic" label="Name" variant="outlined"
         value={name}
-        onChange={(event) => setName(event.target.value)}
-        placeholder="Enter Name" />
+        onChange={(event) => setName(event.target.value)} />
 
-      <input type="text"
+      <TextField id="outlined-basic" label="Poster" variant="outlined"
         value={poster}
-        onChange={(event) => setPoster(event.target.value)}
-        placeholder="Enter poster" />
+        onChange={(event) => setPoster(event.target.value)} />
 
-      <input type="text"
+      <TextField id="outlined-basic" label="Price" variant="outlined"
         value={price}
-        onChange={(event) => setPrice(event.target.value)}
-        placeholder="Enter price" />
+        onChange={(event) => setPrice(event.target.value)} />
 
-      <input type="text"
+      <TextField id="outlined-basic" label="Summary" variant="outlined"
         value={summary}
-        onChange={(event) => setSummary(event.target.value)}
-        placeholder="Enter summary" />
+        onChange={(event) => setSummary(event.target.value)} />
 
-      <input type="text"
+      <TextField id="outlined-basic" label="Rating" variant="outlined"
         value={rating}
-        onChange={(event) => setRating(event.target.value)}
-        placeholder="Enter rating" />
-      {/* copy productList and add newProduct */}
-      <button onClick={() => {
+        onChange={(event) => setRating(event.target.value)} />
+
+
+      <Button variant="contained" onClick={() => {
         const newProduct = {
           name,
           poster,
@@ -47,7 +47,23 @@ export function AddProduct({ productList, setProductList }) {
         setProductList([...productList, newProduct])
         console.log(newProduct)
         navigate("/products")
-      }}>Add Product</button>
+      }}>Add Product</Button>
+
+
+
+      {/* copy productList and add newProduct */}
+      {/* <button onClick={() => {
+        const newProduct = {
+          name,
+          poster,
+          price,
+          summary,
+          rating
+        }
+        setProductList([...productList, newProduct])
+        console.log(newProduct)
+        navigate("/products")
+      }}>Add Product</button> */}
     </div>
   );
 }
