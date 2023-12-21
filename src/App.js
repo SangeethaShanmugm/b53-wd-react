@@ -1,11 +1,11 @@
 import './App.css';
 import { Routes, Route, Link, useNavigate } from "react-router-dom"
 import { AddColor } from './AddColor';
-import { ProductList } from './ProductList';
+import { ProductList } from './components/ProductList';
 import { Home } from './Home';
 import { UserList } from './UserList';
-import { ProductDetails } from './ProductDetails';
-import { AddProduct } from './AddProduct';
+import { ProductDetails } from './components/ProductDetails';
+import { AddProduct } from './components/AddProduct';
 import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,6 +14,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import ExampleContext from "./context/ExampleContext"
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -28,7 +29,8 @@ export const INITIAL_PRODUCT_LIST = [
     "poster": "https://m.media-amazon.com/images/I/81Os1SDWpcL._AC_UY327_FMwebp_QL65_.jpg",
     "price": "₹1,56,990",
     "summary": "FORGED IN TITANIUM — iPhone 15 Pro Max has Link strong and light aerospace-grade titanium design with Link textured matte-glass back. It also features Link Ceramic Shield front that’s tougher than any smartphone glass. And it’s splash, water, and dust resistant.",
-    "rating": 3.9
+    "rating": 3.9,
+    "trailer": "https://www.youtube.com/embed/xqyUdNxWazA"
   },
   {
     "name": "Apple 2022 MacBook Pro Laptop with M2 chip",
@@ -137,6 +139,8 @@ function App() {
             <Button color="inherit" onClick={() => navigate("/products/add")}>AddProduct</Button>
             <Button color="inherit" onClick={() => navigate("/color-game")}>AddColor</Button>
             <Button color="inherit" onClick={() => navigate("/profile")}>UserList</Button>
+            <Button color="inherit" onClick={() => navigate("/context")}>Context</Button>
+
             <Button color="inherit" startIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
               onClick={() => setMode(mode === "light" ? "dark" : "light")}>
               {mode === "light" ? "dark" : "light"} Mode</Button>
@@ -163,6 +167,7 @@ function App() {
 
           <Route path="/color-game" element={<AddColor />} />
           <Route path="/profile" element={<UserList />} />
+          <Route path="/context" element={<ExampleContext />} />
         </Routes>
       </div>
     </ThemeProvider>

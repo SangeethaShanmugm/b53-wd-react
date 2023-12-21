@@ -1,6 +1,12 @@
 import { useState } from 'react';
-import { Counter } from "./Counter";
+import { Counter } from "../Counter";
 import { useNavigate } from "react-router-dom"
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import IconButton from '@mui/material/IconButton';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import InfoIcon from '@mui/icons-material/Info';
+import Button from '@mui/material/Button';
+
 export function Product({ product, id, onAddCart }) {
 
 
@@ -25,15 +31,31 @@ export function Product({ product, id, onAddCart }) {
         <h3 className='product-name'>{product.name} - {id}</h3>
         <p style={styles} className='product-rating'>⭐{product.rating}</p>
       </div>
-      <button onClick={() => setShow(!show)}>Toggle Description</button>
-      <button onClick={() => navigate(`/products/${id}`)}>Info</button>
+
+      <IconButton aria-label="toggleBtn" color="primary" onClick={() => setShow(!show)}>
+        {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+      </IconButton>
+
+
+      <IconButton aria-label="infoBtn" color="primary" onClick={() => navigate(`/products/${id}`)}>
+        <InfoIcon />
+      </IconButton>
+
+
+      {/* <button onClick={() => setShow(!show)}>Toggle Description</button> */}
+      {/* <button onClick={() => navigate(`/products/${id}`)}>Info</button> */}
       {/* conditional Styling */}
       {/* <p style={summaryStyle} className='product-summary'>{product.summary}</p> */}
       {/* conditional rendering */}
       {show ? <p className='product-summary'>{product.summary}</p> : null}
       <div className='priceStyle'>
-        Price: <p className='product-price'>  {product.price}</p>
-        <button onClick={() => onAddCart(product)}>Add to Cart</button>
+        <p className='product-price'>Price: {product.price}</p>
+
+        <Button variant="contained" color="success" size="small" onClick={() => onAddCart(product)}>Add to Cart</Button>
+
+
+
+        {/* <button onClick={() => onAddCart(product)}>Add to Cart</button> */}
       </div>
       <Counter />
     </div>

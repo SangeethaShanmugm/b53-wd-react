@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Cart } from './Cart';
+import { Cart } from '../Cart';
 import { Product } from './Product';
-import { INITIAL_PRODUCT_LIST } from './App';
+import { INITIAL_PRODUCT_LIST } from '../App';
 
 export function ProductList({ productList }) {
   // const productList = INITIAL_PRODUCT_LIST;

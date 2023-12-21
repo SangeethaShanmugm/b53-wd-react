@@ -3,7 +3,9 @@
 }
 
 .product-container {
-  width: 350px;
+  width: 400px;
+  box-shadow: 2px 2px 5px #888888;
+  padding: 10px 30px;
 }
 
 .product-poster {
@@ -32,6 +34,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  justify-content: space-between;
 }
 
 .product-list {
@@ -52,4 +55,9 @@
   flex-wrap: wrap;
   flex-direction: column;
   gap: 10px;
+}
+
+.product-name,
+.product-rating {
+  font-size: 25px;
 }
