@@ -1,6 +1,8 @@
 import React, { useState, createContext, useContext } from 'react'
 import { useGlobalContext } from './context'
 import { Sample2 } from './Sample2'
+import Ref from './Ref'
+import Reducer from './Reducer'
 //1. Creating   - createContext ✅
 //2. Publisher  - provider - context.Provider ✅
 //3. Subscriber - useContext  - useContext(context) ✅
@@ -24,12 +26,14 @@ function ExampleContext() {
   return (
     <ProfileNameContext.Provider value={profileName} >
       <div>ExampleContext
+        {/* <Ref /> */}
+        <Reducer />
         {/* <h1>{profileName}</h1>
       <input type="text" value={profileName} onChange={handleInputChange} />
       <button onClick={handleClick}>Change Name</button> */}
-        <Sample />
+        {/* <Sample />
         <Sample1 />
-        <Sample2 />
+        <Sample2 /> */}
       </div>
     </ProfileNameContext.Provider>
   )
