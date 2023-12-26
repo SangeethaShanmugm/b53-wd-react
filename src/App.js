@@ -15,6 +15,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import ExampleContext from "./context/ExampleContext"
+import TicTacToe from './components/TicTacToe';
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -127,6 +128,11 @@ function App() {
   });
 
 
+  fetch("https://658ae52eba789a9622381b47.mockapi.io/products")
+    .then((res) => res.json())
+    .then((data) => console.log(data)
+    )
+
   const navigate = useNavigate()
   return (
     <ThemeProvider theme={theme}>
@@ -140,6 +146,8 @@ function App() {
             <Button color="inherit" onClick={() => navigate("/color-game")}>AddColor</Button>
             <Button color="inherit" onClick={() => navigate("/profile")}>UserList</Button>
             <Button color="inherit" onClick={() => navigate("/context")}>Context</Button>
+            <Button color="inherit" onClick={() => navigate("/tic-tac-toe")}>TicTacToe</Button>
+
 
             <Button color="inherit" startIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
               onClick={() => setMode(mode === "light" ? "dark" : "light")}>
@@ -168,6 +176,7 @@ function App() {
           <Route path="/color-game" element={<AddColor />} />
           <Route path="/profile" element={<UserList />} />
           <Route path="/context" element={<ExampleContext />} />
+          <Route path="/tic-tac-toe" element={<TicTacToe />} />
         </Routes>
       </div>
     </ThemeProvider>

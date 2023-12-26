@@ -61,3 +61,28 @@
 .product-rating {
   font-size: 25px;
 }
+
+.full-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: min-content;
+}
+
+.game-box {
+  width: 10rem;
+  height: 10rem;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  font-size: 8rem;
+  cursor: pointer;
+  text-align: center;
+}
