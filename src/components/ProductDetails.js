@@ -1,12 +1,23 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
+import { useEffect, useState } from "react";
 
 
-export function ProductDetails({ productList }) {
+export function ProductDetails() {
+  const [product, setProduct] = useState({})
+
   //Get parameter from url
   const { productid } = useParams();
-  const product = productList[productid]
-  console.log(product)
+  // const product = productList[productid]
+  // console.log(product)
+
+  useEffect(() => {
+
+    fetch(`https://658ae52eba789a9622381b47.mockapi.io/products/${productid}`)
+      .then((res) => res.json())
+      .then((data) => setProduct(data)
+      )
+  }, [])
 
 
   const navigate = useNavigate()
@@ -19,6 +30,7 @@ export function ProductDetails({ productList }) {
         <h3 className='product-name'>{product.name}</h3>
         <p className='product-rating'>⭐{product.rating}</p>
       </div>
+      <p className='product-summary'>{product.summary}</p>
       <Button variant="contained" onClick={() => navigate(-1)}>BACK</Button>
     </div>
   );

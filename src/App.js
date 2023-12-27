@@ -6,7 +6,7 @@ import { Home } from './Home';
 import { UserList } from './UserList';
 import { ProductDetails } from './components/ProductDetails';
 import { AddProduct } from './components/AddProduct';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
@@ -16,6 +16,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import ExampleContext from "./context/ExampleContext"
 import TicTacToe from './components/TicTacToe';
+import LifeCycleA from './classComponent/LifeCycleA';
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -114,7 +115,7 @@ export const INITIAL_PRODUCT_LIST = [
 
 function App() {
   //lifting the state up => lifted from child comp
-  const [productList, setProductList] = useState(INITIAL_PRODUCT_LIST)
+  const [productList, setProductList] = useState([])
   const [mode, setMode] = useState("light")
   //1. Creating   - createContext ✅
   //2. Publisher  - provider - context.Provider ✅
@@ -126,12 +127,6 @@ function App() {
       mode: mode,
     },
   });
-
-
-  fetch("https://658ae52eba789a9622381b47.mockapi.io/products")
-    .then((res) => res.json())
-    .then((data) => console.log(data)
-    )
 
   const navigate = useNavigate()
   return (
@@ -147,7 +142,7 @@ function App() {
             <Button color="inherit" onClick={() => navigate("/profile")}>UserList</Button>
             <Button color="inherit" onClick={() => navigate("/context")}>Context</Button>
             <Button color="inherit" onClick={() => navigate("/tic-tac-toe")}>TicTacToe</Button>
-
+            <Button color="inherit" onClick={() => navigate("/class")}>Class Component</Button>
 
             <Button color="inherit" startIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
               onClick={() => setMode(mode === "light" ? "dark" : "light")}>
@@ -168,8 +163,8 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductList productList={productList} />} />
-          <Route path="/products/:productid" element={<ProductDetails productList={productList} />} />
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/products/:productid" element={<ProductDetails />} />
           <Route path="/products/add" element={<AddProduct productList={productList} setProductList={setProductList} />} />
 
 
@@ -177,6 +172,7 @@ function App() {
           <Route path="/profile" element={<UserList />} />
           <Route path="/context" element={<ExampleContext />} />
           <Route path="/tic-tac-toe" element={<TicTacToe />} />
+          <Route path="/class" element={<LifeCycleA />} />
         </Routes>
       </div>
     </ThemeProvider>
