@@ -5,7 +5,8 @@ import { INITIAL_PRODUCT_LIST } from '../App';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { API } from '../global';
-
+import EditIcon from '@mui/icons-material/Edit';
+import { useNavigate } from 'react-router-dom';
 
 export function ProductList() {
   // const productList = INITIAL_PRODUCT_LIST;
@@ -13,14 +14,24 @@ export function ProductList() {
 
   const [cart, setCart] = useState([]);
 
-  const getProduct = async () => {
-    try {
-      const response = await fetch(`${API}/products`, { method: "GET" })
-      const result = await response.json()
-      setProductList(result)
-    } catch (error) {
-      console.error("Error while fetching product list", error)
-    }
+
+  const navigate = useNavigate()
+  // const getProduct = async () => {
+  //   try {
+  //     const response = await fetch(`${API}/products`, { method: "GET" })
+  //     const result = await response.json()
+  //     setProductList(result)
+  //   } catch (error) {
+  //     console.error("Error while fetching product list", error)
+  //   }
+  // }
+
+  const getProduct = () => {
+
+    fetch(`${API}/products`, { method: "GET" })
+      .then((res) => res.json())
+      .then((data) => setProductList(data))
+
   }
 
 
@@ -51,7 +62,16 @@ export function ProductList() {
                 <DeleteIcon />
               </IconButton>
 
-            } />
+            }
+            editButton={
+              <IconButton aria-label="editBtn" color="error"
+                onClick={() => navigate(`/products/edit/${product.id}`)}>
+                <EditIcon />
+              </IconButton>
+
+            }
+
+          />
         ))}
       </div>
     </div>

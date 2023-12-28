@@ -7,7 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import InfoIcon from '@mui/icons-material/Info';
 import Button from '@mui/material/Button';
 
-export function Product({ product, id, onAddCart, deleteButton }) {
+export function Product({ product, id, onAddCart, deleteButton, editButton }) {
 
 
   // true  = visible => block
@@ -60,6 +60,7 @@ export function Product({ product, id, onAddCart, deleteButton }) {
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Counter />
         {deleteButton}
+        {editButton}
       </div>
     </div>
   );

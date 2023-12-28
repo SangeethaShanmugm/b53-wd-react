@@ -17,6 +17,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import ExampleContext from "./context/ExampleContext"
 import TicTacToe from './components/TicTacToe';
 import LifeCycleA from './classComponent/LifeCycleA';
+import { EditProduct } from './components/EditProduct';
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -165,7 +166,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:productid" element={<ProductDetails />} />
-          <Route path="/products/add" element={<AddProduct productList={productList} setProductList={setProductList} />} />
+          <Route path="/products/add" element={<AddProduct />} />
+          <Route path="/products/edit/:productid" element={<EditProduct />} />
 
 
           <Route path="/color-game" element={<AddColor />} />

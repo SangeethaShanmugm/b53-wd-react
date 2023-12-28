@@ -1,18 +1,36 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom"
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { API } from "../global";
 
 
-export function AddProduct() {
+export function EditProduct() {
+  const { productid } = useParams();
 
-  const [name, setName] = useState("")
-  const [poster, setPoster] = useState("")
-  const [price, setPrice] = useState("")
-  const [summary, setSummary] = useState("")
-  const [rating, setRating] = useState("")
+  const [product, setProduct] = useState(null)
+
+  useEffect(() => {
+    fetch(`${API}/products/${productid}`, { method: "GET" })
+      .then((res) => res.json())
+      .then((data) => setProduct(data)
+      )
+  }, [])
+
+
+  return product ? <EditProductForm product={product} /> : "Loading.."
+
+}
+
+
+function EditProductForm({ product }) {
+  const [name, setName] = useState(product.name)
+  const [poster, setPoster] = useState(product.poster)
+  const [price, setPrice] = useState(product.price)
+  const [summary, setSummary] = useState(product.summary)
+  const [rating, setRating] = useState(product.rating)
   const navigate = useNavigate()
+
   return (
     <div className="add-product-form">
 
@@ -37,20 +55,20 @@ export function AddProduct() {
         onChange={(event) => setRating(event.target.value)} />
 
 
-      <Button variant="contained" onClick={() => {
-        const newProduct = {
+      <Button variant="contained" color="success" onClick={() => {
+        const updateProduct = {
           name,
           poster,
           price,
           summary,
           rating
         }
-        //1. method => POST
+        //1. method => PUT
         //2. body => data => JSON
         //3. headers => data is in JSON format
-        fetch(`${API}/products`, {
-          method: "POST",
-          body: JSON.stringify(newProduct),
+        fetch(`${API}/products/${product.id}`, {
+          method: "PUT",
+          body: JSON.stringify(updateProduct),
           headers: {
             "Content-Type": "application/json"
           }
@@ -60,23 +78,9 @@ export function AddProduct() {
         // setProductList([...productList, newProduct])
         // console.log(newProduct)
 
-      }}>Add Product</Button>
+      }}>SAVE</Button>
 
 
-
-      {/* copy productList and add newProduct */}
-      {/* <button onClick={() => {
-        const newProduct = {
-          name,
-          poster,
-          price,
-          summary,
-          rating
-        }
-        setProductList([...productList, newProduct])
-        console.log(newProduct)
-        navigate("/products")
-      }}>Add Product</button> */}
     </div>
-  );
+  )
 }
