@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { useEffect, useState } from "react";
+import { API } from "../global";
 
 
 export function ProductDetails() {
@@ -13,7 +14,7 @@ export function ProductDetails() {
 
   useEffect(() => {
 
-    fetch(`https://658ae52eba789a9622381b47.mockapi.io/products/${productid}`)
+    fetch(`${API}/products/${productid}`, { method: "GET" })
       .then((res) => res.json())
       .then((data) => setProduct(data)
       )
