@@ -7,7 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { API } from '../global';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
-
+import axios from "axios"
 export function ProductList() {
   // const productList = INITIAL_PRODUCT_LIST;
   const [productList, setProductList] = useState([])
@@ -26,11 +26,13 @@ export function ProductList() {
   //   }
   // }
 
-  const getProduct = () => {
+  const getProduct = async () => {
 
-    fetch(`${API}/products`, { method: "GET" })
-      .then((res) => res.json())
-      .then((data) => setProductList(data))
+    const response = await axios.get(`${API}/products`)
+    console.log(response.data)
+    setProductList(response.data)
+    // .then((res) => res.json())
+    // .then((data) => setProductList(data))
 
   }
 
