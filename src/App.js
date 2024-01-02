@@ -18,6 +18,7 @@ import ExampleContext from "./context/ExampleContext"
 import TicTacToe from './components/TicTacToe';
 import LifeCycleA from './classComponent/LifeCycleA';
 import { EditProduct } from './components/EditProduct';
+import BasicForm from './Formik/BasicForm';
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -144,6 +145,7 @@ function App() {
             <Button color="inherit" onClick={() => navigate("/context")}>Context</Button>
             <Button color="inherit" onClick={() => navigate("/tic-tac-toe")}>TicTacToe</Button>
             <Button color="inherit" onClick={() => navigate("/class")}>Class Component</Button>
+            <Button color="inherit" onClick={() => navigate("/form")}>Basic Form</Button>
 
             <Button color="inherit" startIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
               onClick={() => setMode(mode === "light" ? "dark" : "light")}>
@@ -175,6 +177,7 @@ function App() {
           <Route path="/context" element={<ExampleContext />} />
           <Route path="/tic-tac-toe" element={<TicTacToe />} />
           <Route path="/class" element={<LifeCycleA />} />
+          <Route path="/form" element={<BasicForm />} />
         </Routes>
       </div>
     </ThemeProvider>
