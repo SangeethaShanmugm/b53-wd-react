@@ -8,11 +8,16 @@ import { API } from '../global';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios"
+import { addItem } from '../utils/CartSlice';
+import { useDispatch } from 'react-redux';
+import { Button } from '@mui/material';
+
 export function ProductList() {
+  const dispatch = useDispatch()
   // const productList = INITIAL_PRODUCT_LIST;
   const [productList, setProductList] = useState([])
 
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
 
 
   const navigate = useNavigate()
@@ -45,16 +50,25 @@ export function ProductList() {
   //   )
 
   const handleCart = (product) => {
-    setCart([...cart, product]);
+    // setCart([...cart, product]);
+    dispatch(addItem(product))
   };
 
   return (
     <div>
-      <button>Cart {cart.length}</button>
-      <Cart cartItem={cart} />
+      {/* <button>Cart {cart.length}</button>
+      <Cart cartItem={cart} /> */}
       <div className='product-list'>
-        {productList.map((product, index) => (
-          <Product key={product.id} product={product} id={product.id} onAddCart={handleCart}
+        {productList.map((product) => (
+          <Product key={product.id} product={product} id={product.id}
+
+
+            onAddCart={
+              <Button variant="contained"
+                color="success" size="small"
+                onClick={() => handleCart(product)}>Add to Cart</Button>}
+
+
             deleteButton={
               <IconButton aria-label="deleteBtn" color="secondary"
                 onClick={() => {

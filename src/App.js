@@ -19,7 +19,10 @@ import TicTacToe from './components/TicTacToe';
 import LifeCycleA from './classComponent/LifeCycleA';
 import { EditProduct } from './components/EditProduct';
 import BasicForm from './Formik/BasicForm';
-
+import { Cart } from './Cart';
+import { IconButton } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useSelector } from 'react-redux';
 export const INITIAL_PRODUCT_LIST = [
   {
     "name": "Motivational Poster Frame",
@@ -116,6 +119,10 @@ export const INITIAL_PRODUCT_LIST = [
 ]
 
 function App() {
+  const cartItems = useSelector((store) => store.cart.items)
+
+  console.log("cartItems", cartItems)
+
   //lifting the state up => lifted from child comp
   const [productList, setProductList] = useState([])
   const [mode, setMode] = useState("light")
@@ -146,6 +153,12 @@ function App() {
             <Button color="inherit" onClick={() => navigate("/tic-tac-toe")}>TicTacToe</Button>
             <Button color="inherit" onClick={() => navigate("/class")}>Class Component</Button>
             <Button color="inherit" onClick={() => navigate("/form")}>Basic Form</Button>
+            <Button color="inherit" onClick={() => navigate("/cart")}>
+              Cart {cartItems.length}
+              <IconButton>
+                <ShoppingCartIcon />
+              </IconButton>
+            </Button>
 
             <Button color="inherit" startIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
               onClick={() => setMode(mode === "light" ? "dark" : "light")}>
@@ -178,6 +191,7 @@ function App() {
           <Route path="/tic-tac-toe" element={<TicTacToe />} />
           <Route path="/class" element={<LifeCycleA />} />
           <Route path="/form" element={<BasicForm />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </div>
     </ThemeProvider>

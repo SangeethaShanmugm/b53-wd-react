@@ -51,8 +51,8 @@ export function Product({ product, id, onAddCart, deleteButton, editButton }) {
       <div className='priceStyle'>
         <p className='product-price'>Price: {product.price}</p>
 
-        <Button variant="contained" color="success" size="small" onClick={() => onAddCart(product)}>Add to Cart</Button>
 
+        {onAddCart}
 
 
         {/* <button onClick={() => onAddCart(product)}>Add to Cart</button> */}
