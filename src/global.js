@@ -1,1 +1,1 @@
-export const API = "https://b53-node.onrender.com"
+export const API = "https://b52-wd-node.onrender.com"
